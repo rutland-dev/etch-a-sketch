@@ -3,6 +3,8 @@ generateButton.addEventListener('click', generateGrid);
 
 let gridContainer = document.querySelector('#grid-container');
 
+const colors = ['red', 'green', 'blue', 'pink', 'purple', 'brown', 'gray', 'yellow', 'orange']
+
 function getInput() {
     let input = prompt('How many columns/rows would you like? (numbers no higher than 100 only)');
     if (input < 101) {
@@ -29,13 +31,16 @@ function generateGrid() {
             square.style.border = '1px solid black';
             square.style.aspectRatio = '1 / 1';
             square.style.width = '100%';
-            let color = 1
-            square.addEventListener('mouseover', () => {
-                square.style.backgroundColor = 'blue';
-                if (color < 10) {
-                    square.style.filter = `saturate(${color * 10}%)`;
-                    color++;
+            let color = colors[Math.floor(Math.random() *colors.length)];
+            let saturation = 1
+            square.addEventListener('mouseover', (e) => {
+                if (e.buttons == 1) {
+                    if (saturation < 10) {
+                        square.style.filter = `saturate(${saturation * 10}%)`;
+                        saturation++;
+                    }
                 }
+                square.style.backgroundColor = color;
             })
             gridRow.appendChild(square);
         }
