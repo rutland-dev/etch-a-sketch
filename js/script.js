@@ -29,8 +29,13 @@ function generateGrid() {
             square.style.border = '1px solid black';
             square.style.aspectRatio = '1 / 1';
             square.style.width = '100%';
+            let color = 1
             square.addEventListener('mouseover', () => {
                 square.style.backgroundColor = 'blue';
+                if (color < 10) {
+                    square.style.filter = `saturate(${color * 10}%)`;
+                    color++;
+                }
             })
             gridRow.appendChild(square);
         }
