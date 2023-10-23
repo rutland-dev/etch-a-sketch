@@ -3,12 +3,21 @@ generateButton.addEventListener('click', generateGrid);
 
 let gridContainer = document.querySelector('#grid-container');
 
+function getInput() {
+    let input = prompt('How many columns/rows would you like? (numbers no higher than 100 only)');
+    if (input < 101) {
+        return parseInt(input);
+    } else {
+        alert("Invalid Selection. Try again.");
+        getInput();
+    }
+}
 
 function generateGrid() {
     while (gridContainer.firstChild) {
         gridContainer.removeChild(gridContainer.firstChild);
     }
-    let gridQuantity = prompt('How many columns/rows would you like? (numbers only)');
+    let gridQuantity = getInput();
     for (let i = 0, y = gridQuantity; i < y; i++) {
         let gridRow = document.createElement('div');
         gridRow.classList.add('grid-row');
